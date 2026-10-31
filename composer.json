@@ -1,0 +1,34 @@
+{
+    "name": "parse-everything/client",
+    "description": "Official PHP SDK for Parse Everything — Bypass Cloudflare Turnstile, Akamai & DataDome with TLS JA3/JA4 impersonation.",
+    "type": "library",
+    "keywords": [
+        "cloudflare-bypass",
+        "turnstile-solver",
+        "web-scraping",
+        "anti-bot",
+        "datadome",
+        "akamai",
+        "flaresolverr-alternative",
+        "zenrows-alternative",
+        "crawler"
+    ],
+    "homepage": "https://parse-everything.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Parse Everything",
+            "email": "support@rawmind.app"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ParseEverything\\": "src/"
+        }
+    }
+}
