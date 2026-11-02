@@ -15,9 +15,13 @@ class Client {
     }
 
     public function scrape(array $params): array {
-        if (empty($params['target_url'])) {
-            throw new \InvalidArgumentException('target_url is required');
+        $targetUrl = $params['target_url'] ?? $params['url'] ?? null;
+        if (empty($targetUrl)) {
+            throw new \InvalidArgumentException('target_url (or url) is required');
         }
+
+        $params['target_url'] = $targetUrl;
+        $params['method'] = strtoupper($params['method'] ?? 'GET');
 
         $url = $this->baseUrl . '/api/v1/extract';
         $ch = curl_init($url);
@@ -29,7 +33,7 @@ class Client {
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
                 'Authorization: Bearer ' . $this->apiKey,
-                'User-Agent: ParseEverything-PhpSDK/1.0'
+                'User-Agent: ParseEverything-PhpSDK/1.1.0'
             ]
         ]);
 
@@ -44,10 +48,22 @@ class Client {
 
         $json = json_decode($response, true);
         if ($httpCode >= 400) {
-            throw new \RuntimeException("API Error ({$httpCode}): " . ($json['detail'] ?? $response));
+            throw new \RuntimeException("API Error ({$httpCode}): " . ($json['message'] ?? $json['detail'] ?? $response));
         }
 
         return $json ?: [];
+    }
+
+    public function get(string $url, array $options = []): array {
+        return $this->scrape(array_merge(['target_url' => $url, 'method' => 'GET'], $options));
+    }
+
+    public function post(string $url, $body = null, array $options = []): array {
+        $params = array_merge(['target_url' => $url, 'method' => 'POST'], $options);
+        if ($body !== null) {
+            $params['body'] = $body;
+        }
+        return $this->scrape($params);
     }
 
     public function batch(array $targetUrls, array $options = []): array {
