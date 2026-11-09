@@ -24,7 +24,7 @@ $client = new Client('pe_live_YOUR_API_KEY');
 
 $result = $client->scrape([
     'target_url' => 'https://nowsecure.nl',
-    'bypass_cloudflare' => true
+    'auto_detect' => true
 ]);
 
 echo "HTTP Status: " . $result['data']['http_status'] . "\n";

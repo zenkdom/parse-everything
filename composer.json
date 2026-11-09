@@ -1,6 +1,6 @@
 {
     "name": "parse-everything/client",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "description": "Official PHP SDK for Parse Everything — Bypass Cloudflare Turnstile, Akamai & DataDome with TLS JA3/JA4 impersonation, GET/POST forwarding & 0-credit failure guarantee.",
     "type": "library",
     "keywords": [
