@@ -23,8 +23,9 @@ use ParseEverything\Client;
 $client = new Client('pe_live_YOUR_API_KEY');
 
 $result = $client->scrape([
-    'target_url' => 'https://nowsecure.nl',
-    'auto_detect' => true
+    'target_url' => 'https://parse-everything.com/demo/cloudflare',
+    'country_code' => 'US',
+    'render_js' => true
 ]);
 
 echo "HTTP Status: " . $result['data']['http_status'] . "\n";

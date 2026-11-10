@@ -20,6 +20,13 @@ class Client {
             throw new \InvalidArgumentException('target_url (or url) is required');
         }
 
+        $defaultParams = [
+            'country_code' => 'US',
+            'render_js' => true,
+            'auto_detect' => true,
+            'method' => 'GET'
+        ];
+        $params = array_merge($defaultParams, $params);
         $params['target_url'] = $targetUrl;
         $params['method'] = strtoupper($params['method'] ?? 'GET');
 
@@ -68,6 +75,11 @@ class Client {
 
     public function batch(array $targetUrls, array $options = []): array {
         $url = $this->baseUrl . '/api/v1/batch';
+        $defaultOptions = [
+            'country_code' => 'US',
+            'render_js' => true
+        ];
+        $options = array_merge($defaultOptions, $options);
         $payload = array_merge(['target_urls' => $targetUrls], $options);
 
         $ch = curl_init($url);
