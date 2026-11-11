@@ -40,7 +40,7 @@ class Client {
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
                 'Authorization: Bearer ' . $this->apiKey,
-                'User-Agent: ParseEverything-PhpSDK/1.1.0'
+                'User-Agent: ParseEverything-PhpSDK/1.1.4'
             ]
         ]);
 
@@ -91,7 +91,7 @@ class Client {
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
                 'Authorization: Bearer ' . $this->apiKey,
-                'User-Agent: ParseEverything-PhpSDK/1.0'
+                'User-Agent: ParseEverything-PhpSDK/1.1.4'
             ]
         ]);
 
